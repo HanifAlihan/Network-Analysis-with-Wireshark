@@ -31,7 +31,7 @@ The two IPv4 addresses returned means there are multiple possible destinations f
 # 4. TCP Analysis 
 I used the tcp display filter at first to show the TCP traffic, then I right clicked packet 5, selected Follow TCP stream which filtered only the packets to this TCP connection. 
 
-Packets 5-7 show the three way handshake with SYN, SYN-ACK, and then ACK. My VM requests a connection, the server acknowledges and responds, and my VM acknowledges the server. 
+Packets 5-7 show the three way handshake with SYN, SYN-ACK, and then ACK. My VM (10.0.2.15) requests a connection, the server (199.232.89.91) acknowledges and responds, and my VM acknowledges the server. 
 
 Packets 8-10 show the VM communicating with the server using HTTP. First the VM sends a HTTP GET request, the server acknowledges the request and responds with 200 OK showing the request was successful. 
 
@@ -45,7 +45,7 @@ In packet 8 Firefox on my VM sent an HTTP GET request to get /canonical.html fro
 
 In Packet 10 the server responded with HTTP/1.1 200 OK showing the request was successful. This response had a content type of text/html and content length of 90 bytes. 
 
-This HTTP communication uses port 80, the port for unencrypted HTTP. This is why the content is able to be read through Wireshark. 
+This HTTP communication uses port 80, the port for unencrypted HTTP. Since the HTTP content is unencrypted I can see its content through Wireshark. 
 
 **Packet 8 HTTP GET request**
 <img width="1282" height="772" alt="image" src="https://github.com/user-attachments/assets/5fe20f62-546d-4026-899d-2d1715e9ca58" />
