@@ -37,9 +37,9 @@ Packets 11-14 show the connection closing with FIN-ACK, ACK, FIN-ACK, and then A
 # 5. HTTP Analysis
 I used the http filter to show only the http traffic.
 
-In packet 8 my VM sent an HTTP GET request to get /canonical.html from detectportal.firefox.com
+In packet 8 Firefox on my VM sent an HTTP GET request to get /canonical.html from detectportal.firefox.com
 
-In Packet 10 the server responded with HTTP/1.1 200 OK showing the request was successful. This response contains HTML content that is 90 bytes long.
+In Packet 10 the server responded with HTTP/1.1 200 OK showing the request was successful. This response had a content type of text/html and content length of 90 bytes. 
 
 **Packet 8 HTTP GET request**
 <img width="1282" height="772" alt="image" src="https://github.com/user-attachments/assets/5fe20f62-546d-4026-899d-2d1715e9ca58" />
