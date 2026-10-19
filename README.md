@@ -2,7 +2,7 @@
 Network traffic analysis using Wireshark on ubuntu 24.04 VM
 
 # Project Overview
-The purpose of this project is to get hands on experience on capturing and analyzing network traffic in an Ubuntu Linux environment by using Wireshark
+The purpose of this project is to get hands on experience on capturing and analyzing network traffic in an Ubuntu Linux environment by using Wireshark. I will be analyzing protocols such as DNS, TCP, HTTP, and TLS. 
 
 
 
@@ -45,20 +45,22 @@ In packet 8 Firefox on my VM sent an HTTP GET request to get /canonical.html fro
 
 In Packet 10 the server responded with HTTP/1.1 200 OK showing the request was successful. This response had a content type of text/html and content length of 90 bytes. 
 
+This HTTP communication uses port 80, the port for unencrypted HTTP. This is why the content is able to be read through Wireshark. 
+
 **Packet 8 HTTP GET request**
 <img width="1282" height="772" alt="image" src="https://github.com/user-attachments/assets/5fe20f62-546d-4026-899d-2d1715e9ca58" />
 
 **Packet 10 HTTP response**
 <img width="1282" height="768" alt="image" src="https://github.com/user-attachments/assets/c7b0d4af-7934-430f-a361-918cc6d8732f" />
 
-# 6. HTTPS/TLS Analysis
+# 6. TLS Analysis (Encrypted HTTP/2 Traffic)
 I used the tls display filter to look at the TLS traffic to see encrypted network traffic.
 
 In Packet 47 my VM sent a client hello which offered 14 cipher suites. 
 
 In packet 51 the server responded with a server hello selecting TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 using TLS 1.2.
 
-In Packet 73 the server sent HTTP2 application data that was encrypted to my VM. The server used source port 443, which is the port for HTTPS. Since the application data was sent from port 443, uses TLS, and is encrypted, it cannot be read from Wireshark. 
+In Packet 73 the server sent HTTP/2 application data that was encrypted to my VM using port 443, the port for HTTPS. Since the application data was encrypted with TLS, you cannot read its contents through Wireshark without decryption.
 
 **Packet 47 Client Hello**
 <img width="1272" height="772" alt="image" src="https://github.com/user-attachments/assets/005b440e-4bab-4b26-bc9b-9d590a784803" />
@@ -70,4 +72,15 @@ In Packet 73 the server sent HTTP2 application data that was encrypted to my VM.
 **Packet 73 Encrypted Application Data**
 <img width="1273" height="772" alt="image" src="https://github.com/user-attachments/assets/e19ecbbe-2434-45c1-8ff5-7500d9f06fb8" />
 
-# Findings and Conclusion 
+# 7. Findings and Conclusion 
+**Through the use of Wireshark, I was able to capture network traffic and see how network protocols DNS, TCP, HTTP, and TLS work together**
+
+**DNS: I observed my VM sending a DNS query to resolve a domain name into an IP address and receiving 2 IPv4 addresses from the DNS server.**
+
+**TCP: I observed the three way handshake (SYN, SYN-ACK, ACK) that is used to establish a connection between my VM and the server.**
+
+**HTTP: I observed an HTTP GET Request and a 200 OK response through port 80. This communication is unencrypted so I could see its content through Wireshark**
+
+**TLS: I observed the TLS handshake with Client Hello and Server Hello and the cipher suite that was agreed upon. I also observed encrypted HTTP/2 application data that was transmitted through port 443. Because the data was encrypted I wasn't able to see its content like I was through port 80 HTTP**
+
+In conclusion this network traffic project helped me get a better understanding of how the network protocols work together for what might seem like just a simple exchange such as opening up Firefox and opening up a website on it. Concepts I have heard before such as the TCP three way handshaker and TLS handshake being able to see happen right from my activity on my VM really helped me understand them more. An important concept I also learned from this was the role of TLS with encrypting HTTP communication compared to unencrypted HTTP communication.
