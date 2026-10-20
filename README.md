@@ -3,12 +3,12 @@ Network traffic analysis using Wireshark on ubuntu 24.04 VM
 
 ## Table of Contents
 
-- [Project Overview and Network Interface Selection](#1-project-overview-and-network-interface-selection)
+- [Network Interface Selection](#1-network-interface-selection)
 - [Network Traffic Capture](#2-network-traffic-capture)
 - [DNS Analysis](#3-dns-analysis)
 - [TCP Analysis](#4-tcp-analysis)
 - [HTTP Analysis](#5-http-analysis)
-- [TLS Analysis (Encrypted HTTP/2 Traffic)](#6-tls-analysis-encrypted-http2-traffic)
+- [TLS Analysis](#6-tls-analysis-encrypted-http2-traffic)
 - [Findings and Conclusion](#7-findings-and-conclusion)
 
 ## 1 Project Overview
