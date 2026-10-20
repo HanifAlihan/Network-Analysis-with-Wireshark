@@ -43,6 +43,8 @@ The two IPv4 addresses returned means there are multiple possible destinations f
 **Packet 1117 DNS Response**
 <img width="1290" height="772" alt="image" src="https://github.com/user-attachments/assets/4758be2a-9769-48fe-be0d-048791d9b7fd" />
 
+**Clarification:** For this capture I visited the example.com website, but didn't see a DNS query for that domain in the capture. This is probably because I visited the example.com website already before doing it again while capturing it with Wireshark. Doing this let my VM use a result from the DNS cache. Because of this, I looked at a DNS query and response for the domain example.org.
+
 ## 5. TCP Analysis 
 I used the tcp display filter at first to show the TCP traffic, then I right clicked packet 5, selected Follow TCP stream which filtered only the packets to this TCP connection. 
 
